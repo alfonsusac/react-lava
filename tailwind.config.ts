@@ -12,6 +12,12 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        grid: "url('/grid.svg')",
+      },
+      fontFamily: {
+        mono: ["var(--font-mono)", "sans-serif"],
+      },
     },
   },
   plugins: [],

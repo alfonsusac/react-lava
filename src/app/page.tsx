@@ -1,100 +1,90 @@
-import Image from "next/image";
+
+
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen w-full bg-[#D4420D] bg-grid bg-center flex flex-col gap-24 items-center pb-2 px-2 relative">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <header className="mt-20 text-center px-4 flex flex-col items-center gap-4 w-full max-w-screen-lg bg-[#D4420D] outline outline-1 outline-[#FFD27188] p-20  shadow-xl rounded-lg relative">
+        <div className="absolute top-0 left-0 right-0 flex">
+          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-3 mt-3"/>
+          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3"/>
+          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3"/>
+          <div className="ml-4 mt-1.5 text-sm text-[#FFD27188] font-mono">/home-screen.lava</div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <div className="">
+          <img src="/logo.svg" className="h-8 opacity-60" />
+        </div>
+        <div className="text-[#F16621] font-medium text-4xl">Welcome learners!</div>
+        <h1 className="text-7xl md:text-8xl lg:text-9xl text-[#FFD271] font-semibold tracking-normal">Learn<br /> Anything via <br />Animation</h1>
+        <div className="text-[#FFD27188] font-medium text-lg md:text-2xl">This website holds some of alfonsusac&apos;s animation videos</div>
+      </header>
+      <section className="flex flex-col items-center gap-8 w-full max-w-screen-lg">
+        <h2 className="text-[#F16621] font-medium text-4xl text-center">Directories</h2>
+        <div className="flex flex-wrap gap-2 w-full justify-center">
+          {
+            [
+              {
+                title: "useEffect",
+                description: "Learn how to use useEffect",
+                color: "#FFD271",
+                link: "/useEffect"
+              },
+              {
+                title: "useState",
+                description: "Learn how to use useState",
+                color: "#FFD271",
+                link: "/useState"
+              },
+              {
+                title: "useRef",
+                description: "Learn how to use useRef",
+                color: "#FFD271",
+                link: "/useRef"
+              },
+              {
+                title: "useContext",
+                description: "Learn how to use useContext",
+                link: "/useContext"
+              },
+              {
+                title: "useReducer",
+                description: "Learn how to use useReducer",
+                link: "/useReducer"
+              },
+              {
+                title: "useMemo",
+                description: "Learn how to use useMemo",
+                link: "/useMemo"
+              },
+              {
+                title: "useCallback",
+                description: "Learn how to use useCallback",
+                link: "/useCallback"
+              },
+              {
+                title: "customHooks",
+                description: "Learn how to use customHooks",
+                link: "/customHooks"
+              },
+            ].map((item, index) => {
+              return (
+                <div key={index} className="group select-none rounded-sm cursor-pointer text-lg font-semibold text-[#FFD271] p-2 px-4
+                  bg-[#D4420D] hover:brightness-95 outline outline-1 outline-[#FFD27144] hover:outline-[#FFD27188] shadow-lg transition-all
+                  w-56 aspect-video flex flex-col justify-end items-start
+                ">
+                  <img src="/logo.svg" className="h-8 opacity-20 bg-blend-multiply" />
+                  <span className="">
+                    {item.title}
+                  </span>
+                </div>
+              )
+            })
+          }
+        </div>
+      </section>
+      <footer className="mt-60 bg-[#D4420D] outline outline-1 outline-[#FFD27144] w-full flex items-center justify-center rounded-sm py-20">
+        <div className="text-[#F16621] font-medium text-lg">Made with ❤️ by alfonsusac</div>
       </footer>
     </div>
   );
