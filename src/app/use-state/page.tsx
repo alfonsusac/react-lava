@@ -1,7 +1,7 @@
 
 import { codeToTokens, type ThemeRegistrationAny } from 'shiki'
 import { UesClientClientPage } from './client'
-import { Outro } from './outro'
+import { Outro } from '../ui/Outro'
 
 export default async function Page() {
 

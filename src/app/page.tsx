@@ -1,3 +1,5 @@
+import { cn } from "lazy-cn";
+import Link from "next/link";
 
 
 
@@ -7,9 +9,9 @@ export default function Home() {
 
       <header className="mt-20 text-center px-4 flex flex-col items-center gap-4 w-full max-w-screen-lg bg-[#D4420D] outline outline-1 outline-[#FFD27188] p-20  shadow-xl rounded-lg relative">
         <div className="absolute top-0 left-0 right-0 flex">
-          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-3 mt-3"/>
-          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3"/>
-          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3"/>
+          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-3 mt-3" />
+          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3" />
+          <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3" />
           <div className="ml-4 mt-1.5 text-sm text-[#FFD27188] font-mono">/home-screen.lava</div>
         </div>
         <div className="">
@@ -25,58 +27,68 @@ export default function Home() {
           {
             [
               {
-                title: "useEffect",
-                description: "Learn how to use useEffect",
-                color: "#FFD271",
-                link: "/useEffect"
-              },
-              {
                 title: "useState",
                 description: "Learn how to use useState",
                 color: "#FFD271",
-                link: "/useState"
+                link: "/use-state"
               },
               {
                 title: "useRef",
                 description: "Learn how to use useRef",
                 color: "#FFD271",
-                link: "/useRef"
+                // link: "/useRef"
+              },
+              {
+                title: "useEffect",
+                description: "Learn how to use useEffect",
+                color: "#FFD271",
+                // link: "/useEffect"
               },
               {
                 title: "useContext",
                 description: "Learn how to use useContext",
-                link: "/useContext"
-              },
-              {
-                title: "useReducer",
-                description: "Learn how to use useReducer",
-                link: "/useReducer"
-              },
-              {
-                title: "useMemo",
-                description: "Learn how to use useMemo",
-                link: "/useMemo"
+                // link: "/useContext"
               },
               {
                 title: "useCallback",
                 description: "Learn how to use useCallback",
-                link: "/useCallback"
+                // link: "/useCallback"
               },
               {
                 title: "customHooks",
                 description: "Learn how to use customHooks",
-                link: "/customHooks"
+                // link: "/customHooks"
               },
             ].map((item, index) => {
+              const className = cn(
+                "group select-none rounded-sm cursor-pointer text-lg font-semibold",
+                "text-[#FFD271] p-2 px-4",
+                "bg-[#D4420D] hover:brightness-110 outline outline-1 outline-[#FFD27144] hover:outline-[#FFD27188]",
+                "shadow-lg transition-all",
+                "w-56 aspect-video flex flex-col justify-end items-start",
+                "cursor-pointer",
+                !item.link && "pointer-events-none",
+              )
+
+              const children = (<>
+                <img src="/logo.svg" className="h-8 opacity-20 bg-blend-multiply pointer-events-none" />
+                <span className={cn(
+                  !item.link && "opacity-20",
+                )}>
+                  {item.title}
+                </span>
+              </>)
+
+              if (item.link) {
+                return (
+                  <Link href={item.link} key={index} className={className}>
+                    {children}
+                  </Link> 
+                )
+              }
               return (
-                <div key={index} className="group select-none rounded-sm cursor-pointer text-lg font-semibold text-[#FFD271] p-2 px-4
-                  bg-[#D4420D] hover:brightness-95 outline outline-1 outline-[#FFD27144] hover:outline-[#FFD27188] shadow-lg transition-all
-                  w-56 aspect-video flex flex-col justify-end items-start
-                ">
-                  <img src="/logo.svg" className="h-8 opacity-20 bg-blend-multiply" />
-                  <span className="">
-                    {item.title}
-                  </span>
+                <div key={index} className={className}>
+                  {children}
                 </div>
               )
             })
