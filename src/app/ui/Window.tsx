@@ -2,7 +2,9 @@ import { cn } from "lazy-cn";
 import type { ComponentProps } from "react";
 
 export function Window(
-  { className, children, ...props }: ComponentProps<"section">
+  { className, children, disableWatermark, ...props }: ComponentProps<"section"> & {
+    disableWatermark?: boolean
+  }
 ) {
   return (
     <section
@@ -24,9 +26,13 @@ export function Window(
       {...props}
     >
       {children}
-      <div className="absolute right-4 bottom-4 z-0">
-        <img src="/logo.svg" className="h-8 opacity-20" />
-      </div>
+      {
+        !disableWatermark && (
+          <div className="absolute right-4 bottom-4 z-0">
+            <img src="/logo.svg" className="h-8 opacity-20" />
+          </div>
+        )
+      }
     </section>
   )
 }
@@ -45,7 +51,7 @@ export function TitleBar(
       <div className="shrink-0 w-2 h-2 rounded-full bg-[#FFD27188] activeColorBg" />
       <div className="shrink-0 w-2 h-2 rounded-full bg-[#FFD27188] ml-1 activeColorBg" />
       <div className="shrink-0 w-2 h-2 rounded-full bg-[#FFD27188] ml-1 activeColorBg" />
-      <div className="ml-4 text text-[#FFD27188] activeColor leading-none  mb-0.5 overflow-hidden overflow-ellipsis">{children}</div>
+      <div className="ml-4 text text-[#FFD27188] activeColor leading-none  mb-0.5 overflow-ellipsis w-0 grow">{children}</div>
     </div>
   )
 }

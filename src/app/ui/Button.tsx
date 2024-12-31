@@ -17,7 +17,8 @@ export function Button(
         "shadow-lg",
         "hover:shadow-md",
         "active:shadow-none",
-        "bg-[#D4420D]",
+        "active:scale-110",
+        "bg-[var(--bg,_#D4420D)]",
         "h-11",
         className
       )}
