@@ -8,18 +8,6 @@ import { TitleBar, Window } from "@/app/ui/Window"
 import { useEffect, useState, type SVGProps } from "react"
 import type { ThemedToken } from "shiki"
 
-/**
-import { useState } from "react"
-
-export function LikeCounter() {
-  const pressed = 0
-  return <>
-    <div>{ pressed }</div>
-    <button onClick={ () => pressed += 1 }>Like</button>
-    <button onClick={ () => pressed = 0 }>Reset</button>
-  </>
-}*/
-
 export function UesClientClientPage(props: {
   token: ThemedToken[][]
 }) {
@@ -106,20 +94,6 @@ export function UesClientClientPage(props: {
               </div>
             </Window>
           </div>
-          {/* <div className="border-b border-b-white/10 -mx-4 px-4 py-2 flex">
-            <span className="font-mono text-white/40 -my-2 py-2 pr-4 border-r border-r-white/10">Controls</span>
-            {
-              (() => {
-                const className = "-my-2 py-2 px-8 border-r border-r-white/10 hover:brightness-150 bg-[var(--bg)] cursor-pointer"
-                return (
-                  <>
-                    <button className={className}>1</button>
-                    <button className={className}>2</button>
-                  </>
-                )
-              })()
-            }
-          </div> */}
           <div className="py-3 pb-1 text-[#FFD271] px-1 w-full shrink-0">
             {/* <h1 className="text-4xl font-black font-mono"></h1> */}
             <div className="text-2xl font-medium">

@@ -13,6 +13,7 @@ export default function Home() {
           <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3" />
           <div className="w-2 h-2 rounded-full bg-[#FFD27188] ml-1 mt-3" />
           <div className="ml-4 mt-1.5 text-sm text-[#FFD27188] font-mono">/home-screen.lava</div>
+
         </div>
         <div className="">
           <img src="/logo.svg" className="h-8 opacity-60" />
@@ -23,60 +24,66 @@ export default function Home() {
       </header>
       <section className="flex flex-col items-center gap-8 w-full max-w-screen-lg">
         <h2 className="text-[#F16621] font-medium text-4xl text-center">Directories</h2>
-        <div className="flex flex-wrap gap-2 w-full justify-center">
+        <div className="flex flex-wrap gap-2 w-full justify-center flex-col items-center">
           {
             [
               {
-                title: "useState",
+                title: "Introduction to Component State",
                 description: "Learn how to use useState",
-                color: "#FFD271",
                 link: "/use-state"
               },
               {
-                title: "useRef",
-                description: "Learn how to use useRef",
-                color: "#FFD271",
-                // link: "/useRef"
+                title: "Normal variables don't trigger re-renders",
+                description: "Normal variables don't trigger re-renders",
+                link: "/use-state/variables"
               },
               {
-                title: "useEffect",
-                description: "Learn how to use useEffect",
-                color: "#FFD271",
-                // link: "/useEffect"
+                title: "Re-renders reset every variables",
+                description: "Re-renders reset every variables",
+                link: "/use-state/rerender"
               },
               {
-                title: "useContext",
-                description: "Learn how to use useContext",
-                // link: "/useContext"
+                title: "Setters compares new value with old value",
+                description: "Setters compares new value with old value",
+                link: "/use-state/setters"
               },
               {
-                title: "useCallback",
-                description: "Learn how to use useCallback",
-                // link: "/useCallback"
+                title: "Setters compares objects by reference",
+                description: "Setters compares objects by reference",
+                // link: "/use-state/reference"
               },
               {
-                title: "customHooks",
-                description: "Learn how to use customHooks",
-                // link: "/customHooks"
+                title: "Storing references across re-renders",
+                description: "Storing references across re-renders",
+                // link: "/use-ref"
+              },
+              {
+                title: "Accessing DOM node references",
+                description: "Accessing DOM node references",
+                // link: "/use-ref/dom"
               },
             ].map((item, index) => {
               const className = cn(
-                "group select-none rounded-sm cursor-pointer text-lg font-semibold",
+                "group select-none rounded-md cursor-pointer text-lg font-semibold",
                 "text-[#FFD271] p-2 px-4",
                 "bg-[#D4420D] hover:brightness-110 outline outline-1 outline-[#FFD27144] hover:outline-[#FFD27188]",
                 "shadow-lg transition-all",
-                "w-56 aspect-video flex flex-col justify-end items-start",
+                "w-full max-w-md flex flex-col justify-end items-start",
                 "cursor-pointer",
                 !item.link && "pointer-events-none",
               )
 
               const children = (<>
-                <img src="/logo.svg" className="h-8 opacity-20 bg-blend-multiply pointer-events-none" />
-                <span className={cn(
-                  !item.link && "opacity-20",
+                <div className={cn(
+                  "flex",
+                  !item.link && "opacity-30",
                 )}>
-                  {item.title}
-                </span>
+                  <div className="opacity-50 mr-4">{index + 1}.</div>
+                  <div className="flex flex-col">
+                    {item.title}
+                    {/* <div className="text-sm font-medium opacity-60">{item.description}</div> */}
+                  </div>
+                </div>
               </>)
 
               if (item.link) {

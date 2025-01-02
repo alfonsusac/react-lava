@@ -5,16 +5,18 @@ import { CodeBlock, CodeLine, LineNumber } from "@/app/ui/Code"
 import { Highlight2, useHighlights } from "@/app/ui/Highlight"
 import { TitleBar, Window } from "@/app/ui/Window"
 import { PreviewWindow } from "@/app/ui/Window.preview"
-import { useEffect, useRef, useState, type SVGProps } from "react"
+import { useEffect, useRef, type SVGProps } from "react"
 import type { ThemedToken } from "shiki"
 import { FluentArrowCounterclockwise12Filled } from "../client"
-import { fadeOut, pulseIn } from "@/app/lib/keyframes"
+import { fadeOut, hitEffect, pulseIn } from "@/app/lib/keyframes"
+import { SpeedControl, useSpeedControl } from "@/app/components/SpeedControls"
 
 
 export function UesClientClientPage(props: {
   token: ThemedToken[][]
 }) {
-  const { speed, makeFaster, makeSlower } = useAnimationSpeed()
+  const speedControl = useSpeedControl()
+  const { speed } = speedControl
 
   const valRef = useRef<HTMLDivElement>(null)
   const likedRef = useRef<HTMLDivElement>(null)
@@ -74,11 +76,7 @@ export function UesClientClientPage(props: {
     efx.className = "absolute top-20 left-[30rem] -rotate-6"
     efx.innerHTML = "Rerender!"
     codeRef.current!.appendChild(efx)
-    const randomDeg = Math.random() * 20 - 10
-    const anim = efx.animate([
-      { opacity: 1, transform: `translateY(0) rotate(${ randomDeg }deg) scale(${ 1.5 })` },
-      { opacity: 0, transform: `translateY(-2rem) rotate(${ randomDeg }deg) scale(${ 1.5 })` }
-    ], { duration: 800 })
+    const anim = efx.animate(hitEffect(), { duration: 800 })
     anim.onfinish = () => {
       efx.remove()
     }
@@ -136,15 +134,11 @@ export function UesClientClientPage(props: {
                   0 Likes
                 </div>
                 <div className="flex flex-col gap-2 mt-8 items-center">
-                  <Button
-                    onClick={onRandomizeClick}>
+                  <Button onClick={onRandomizeClick}>
                     <FluentArrowCounterclockwise12Filled />
                     Randomize
                   </Button>
-                  <Button
-                    className="px-3"
-                    onClick={onLikeClick}
-                  >
+                  <Button className="px-3" onClick={onLikeClick}>
                     <MaterialSymbolsThumbUpSharp />
                     Like
                   </Button>
@@ -162,20 +156,7 @@ export function UesClientClientPage(props: {
               </div>
             </div>
             {/* Speed Controls */}
-            <div className="h-full flex gap-2 -mb-4 pt-3 items-center"
-              // @ts-expect-error --bg is a css variable
-              style={{ "--bg": "#171F2B" }}
-            >
-              <Button className="outline-transparent" onClick={makeSlower}>
-                <MaterialSymbolsFastRewind />
-              </Button>
-              <div className="w-16 text-end bg-black/20 p-2 rounded-md">
-                {`${ speed ?? 1 }x`}
-              </div>
-              <Button className="outline-transparent" onClick={makeFaster}>
-                <MaterialSymbolsFastForward />
-              </Button>
-            </div>
+            <SpeedControl {...speedControl} />
           </div>
         </div>
       </Window>
@@ -184,50 +165,21 @@ export function UesClientClientPage(props: {
 
 }
 
-
 export function MaterialSymbolsThumbUpSharp(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="M8 21V8l7-7l1.85 1.85L15.55 8H23v4.4L19.35 21zm-6 0V8h4v13z"></path></svg>
-  )
-}
-
-function useAnimationSpeed(
-) {
-  const speeds = [0.1, 0.25, 0.5, 1] as const
-  const [speed, _setSpeed] = useState(3)
-  const makeFaster = () => {
-    _setSpeed(prev => {
-      if (prev < speeds.length - 1) {
-        return prev + 1
-      }
-      return prev
-    })
-  }
-  const makeSlower = () => {
-    _setSpeed(prev => {
-      if (prev > 0) {
-        return prev - 1
-      }
-      return prev
-    })
-  }
-  return {
-    speed: speeds[speed],
-    makeFaster,
-    makeSlower
-  }
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M8 21V8l7-7l1.85 1.85L15.55 8H23v4.4L19.35 21zm-6 0V8h4v13z"
+      ></path>
+    </svg>
+  );
 }
 
 
-export function MaterialSymbolsFastForward(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="M2.5 18V6l9 6zm10 0V6l9 6z"></path></svg>
-  )
-}
-
-
-export function MaterialSymbolsFastRewind(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="m21.5 18l-9-6l9-6zm-10 0l-9-6l9-6z"></path></svg>
-  )
-}

@@ -1,5 +1,6 @@
 import type { RefObject } from "react";
 import { getCharacterWidthInEm } from "../ui/Code";
+import { hitEffect } from "./keyframes";
 
 export function unit(i: number) {
   const scale = 150
@@ -55,4 +56,15 @@ export function highlight2(ref: RefObject<HTMLElement | null>, places: {
     easing: 'ease-in-out',
   })
 
+}
+
+
+
+
+export function applyHitEffect(parentId: string, el: HTMLDivElement) {
+  const parent = document.getElementById(parentId)
+  if (!parent) throw new Error("Parent not found")
+  parent.appendChild(el)
+  const anim = el.animate(hitEffect(), { duration: 800 })
+  anim.onfinish = () => el.remove()
 }

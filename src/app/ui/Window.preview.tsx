@@ -1,18 +1,19 @@
-import type { SVGProps } from "react"
+import type { ComponentProps, SVGProps } from "react"
 import { TitleBar, Window } from "./Window"
+import { cn } from "lazy-cn"
 
 export function PreviewWindow(
-  { children }:
-    { children: React.ReactNode }
+  { children, className, ...props }: ComponentProps<typeof Window>
 ) {
   return (
-    <Window className="w-60 flex-none z-10 absolute right-4 bottom-4 top-0 shadow-2xl"
+    <Window className={cn("w-60 flex-none z-10 absolute right-4 bottom-4 top-0 shadow-2xl", className)}
       // @ts-expect-error --bg is a css variable
       style={{ "--bg": "#D4420D" }}
+      {...props}
     >
       <TitleBar>
-        <div className="flex items-center">
-          <div className="grow">localhost:3000</div>
+        <div className="flex items-center grow">
+          <div className="grow text-center">localhost:3000</div>
           <button
             className="-m-2 p-2 bg-[var(--bg)] hover:brightness-125 rounded-md cursor-pointer outline-none"
             onClick={() => location.reload()}

@@ -1,5 +1,5 @@
 import { cn } from "lazy-cn";
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 
 export function Window(
   { className, children, disableWatermark, ...props }: ComponentProps<"section"> & {
@@ -51,7 +51,24 @@ export function TitleBar(
       <div className="shrink-0 w-2 h-2 rounded-full bg-[#FFD27188] activeColorBg" />
       <div className="shrink-0 w-2 h-2 rounded-full bg-[#FFD27188] ml-1 activeColorBg" />
       <div className="shrink-0 w-2 h-2 rounded-full bg-[#FFD27188] ml-1 activeColorBg" />
-      <div className="ml-4 text text-[#FFD27188] activeColor leading-none  mb-0.5 overflow-ellipsis w-0 grow">{children}</div>
+      <div className="ml-4 text text-[#FFD27188] activeColor leading-none overflow-ellipsis w-0 grow flex">
+        {children}
+      </div>
     </div>
+  )
+}
+
+export function CodeWindow1(
+  { className, style, padding, ...props }: ComponentProps<typeof Window> & {
+    padding: CSSProperties['paddingInline']
+  }
+) {
+  return (
+    <Window className={cn("bg-[#171F2B]", className)} style={{
+      // @ts-expect-error --bg is var
+      "--bg": "#171F2B",
+      "--padding": padding,
+      ...style
+    }} {...props} disableWatermark />
   )
 }
