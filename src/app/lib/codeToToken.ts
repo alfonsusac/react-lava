@@ -7,6 +7,13 @@ export async function codeToTokens(code: string) {
   })
 }
 
+export async function toTokens(code: string) {
+  return shikiCodeToTokens(code, {
+    lang: "tsx",
+    theme: "vesper",
+  })
+}
+
 const myTheme: ThemeRegistrationAny = {
   name: 'my-theme',
   settings: [

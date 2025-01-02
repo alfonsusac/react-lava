@@ -30,7 +30,6 @@ export default async function UseStateSettersPage() {
   return (
     <div className="bg-[#bc3a0b] bg-grid min-h-screen flex items-center justify-center overflow-hidden">
       {/* Viewport */}
-      {/* <article className="p-1 w-[960] h-[600px] flex flex-col relative"> */}
       <article className="p-1 w-[960] h-[660px] flex flex-col relative">
         <div className="flex items-stretch h-full">
           <SettersUseStateClient
